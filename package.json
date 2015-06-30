@@ -1,0 +1,27 @@
+{
+  "name": "quom",
+  "version": "1.0.0",
+  "description": "a quotation management system",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/bin/www",
+    "validate": "jshint ./server/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "quom"
+  },
+  "keywords": [
+    "quotation",
+    "angular"
+  ],
+  "author": "stephenwan",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^2.2.0",
+    "express": "^4.13.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.8.0"
+  }
+}
