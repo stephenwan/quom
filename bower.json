@@ -1,0 +1,20 @@
+{
+  "name": "quom",
+  "version": "1.0.0",
+  "homepage": "https://github.com/stephenwan/quom",
+  "authors": [
+    "stephenwan <stephenwyy@gmail.com>"
+  ],
+  "description": "a quotation management system",
+    "license": "MIT",
+    "dependencies": {
+        "bootstrap": "~3.3.5"  
+    },  
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "vendors",
+    "test",
+    "tests"
+  ]
+}

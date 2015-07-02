@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "a quotation management system",
   "main": "index.js",
-  "scripts": {
-    "start": "node ./server/bin/www",
-    "validate": "jshint ./server/*.js"
+    "scripts": {
+        "start": "node ./server/bin/www",
+        "validate": "jshint ./server/*.js",
+        "bower": "bower"
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,12 @@
   "author": "stephenwan",
   "license": "ISC",
   "dependencies": {
+    "bower": "^1.4.1",
     "debug": "^2.2.0",
-    "express": "^4.13.0"
+    "express": "^4.13.0",
+    "jade": "^1.11.0",
+    "mongodb": "^2.0.35",
+    "passport": "^0.2.2"
   },
   "devDependencies": {
     "jshint": "^2.8.0"
