@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "a quotation management system",
   "main": "index.js",
-    "scripts": {
-        "start": "node ./server/bin/www",
-        "validate": "jshint ./server/*.js",
-        "bower": "bower"
+  "scripts": {
+    "start": "node ./server/bin/www",
+    "validate": "jshint ./server/*.js",
+    "bower": "bower",
+    "grunt": "grunt"
   },
   "repository": {
     "type": "git",
@@ -22,11 +23,19 @@
     "bower": "^1.4.1",
     "debug": "^2.2.0",
     "express": "^4.13.0",
+    "grunt": "^0.4.5",
     "jade": "^1.11.0",
+    "merge": "^1.2.0",
     "mongodb": "^2.0.35",
-    "passport": "^0.2.2"
+    "passport": "^0.2.2",
+    "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
-    "jshint": "^2.8.0"
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-sass": "^1.0.0",
+    "jshint": "^2.8.0",
+    "load-grunt-tasks": "^3.2.0"
   }
 }

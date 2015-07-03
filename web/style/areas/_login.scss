@@ -1,0 +1,15 @@
+.login-panel {
+    background-color: lightslategrey;
+
+    .panel {
+        width: 400px;
+        .btn {
+            width: 150px;        
+        }
+        p.error-message {
+            color: $warning;
+            font-style: italic;
+            padding: 0 10px;
+        }
+    }
+}

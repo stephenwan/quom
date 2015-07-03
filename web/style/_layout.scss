@@ -1,0 +1,11 @@
+.container-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.space-around {
+        justify-content: space-around;
+    }
+}
+.vertical-full {
+    height: 100%;
+}

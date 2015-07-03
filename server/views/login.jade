@@ -1,18 +1,34 @@
+mixin loginForm
+  p Please login to your account.
+  form
+    .form-group
+      label(for='accountInput') Account
+      input.form-control(type='text', id='accountInput', required)
+    .form-group
+      label(for='passwordInput') Password
+      input.form-control(type='password', id='passwordInput', required)
+    if (errorMessage !== null)  
+      p.error-message!= errorMessage  
+    .container-center.space-around
+      button(type='submit', class='btn btn-primary') Submit      
+      .checkbox
+        label
+          input(type='checkbox',checked) 
+          | Remember Me
+
 extends ./master-layout.jade
 
 block stylesheets
   link(rel='stylesheet', href='/public/vendors/bootstrap/dist/css/bootstrap.min.css')
+  link(rel='stylesheet', href='/public/css/style.css')
 
 block content
-  div(class='container-fluid')
-    .panel(class=['panel-info', 'center-block', 'col-md-4'])
-      .panel-heading Password Login
+  div(class=['container-fluid', 'vertical-full', 'container-center', 'login-panel'])
+    .panel(class=['panel-info', 'center-block'])
+      .panel-heading Welcome to #{title}!
       .panel-body
-        div
-          label(for='account') Account
-          input#account(type='text', placeholder='account name')
-        div
-          label(for='password') Password
-          input#password(type='password', placeholder='password')
-        div
-          input(type='submit') 
+        +loginForm
+      .panel-footer
+        .container-center.space-around
+          a(href='/reset-password') Forgot Your Password?
+          a(href='/registration') Create An Account

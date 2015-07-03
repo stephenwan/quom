@@ -1,6 +1,6 @@
 doctype html
 
-html(lang='en')
+html(lang='en', class=['vertical-full'])
   head
     title!= title
     meta(charset='utf-8')
@@ -10,7 +10,7 @@ html(lang='en')
 
     block stylesheets
     
-  body
+  body(class=['vertical-full'])
     block content
   
   block scripts
