@@ -20,14 +20,19 @@
   "author": "stephenwan",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.13.2",
     "bower": "^1.4.1",
+    "connect-flash": "^0.1.1",
     "debug": "^2.2.0",
     "express": "^4.13.0",
+    "express-session": "^1.11.3",
     "grunt": "^0.4.5",
     "jade": "^1.11.0",
+    "memory-store": "0.0.1",
     "merge": "^1.2.0",
     "mongodb": "^2.0.35",
     "passport": "^0.2.2",
+    "passport-local": "^1.0.0",
     "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
