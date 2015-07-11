@@ -7,7 +7,8 @@
     "start": "node ./server/bin/www",
     "validate": "jshint ./server/*.js",
     "bower": "bower",
-    "grunt": "grunt"
+    "grunt": "grunt",
+    "test-server": "./node_modules/.bin/mocha --reporter spec --timeout 10000 ./server/t/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "bower": "^1.4.1",
     "connect-flash": "^0.1.1",
     "debug": "^2.2.0",
+    "deepcopy": "^0.5.0",
     "express": "^4.13.0",
     "express-session": "^1.11.3",
     "grunt": "^0.4.5",
@@ -36,11 +38,13 @@
     "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
+    "chai": "^3.0.0",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-sass": "^1.0.0",
     "jshint": "^2.8.0",
-    "load-grunt-tasks": "^3.2.0"
+    "load-grunt-tasks": "^3.2.0",
+    "mocha": "^2.2.5"
   }
 }

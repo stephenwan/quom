@@ -8,6 +8,7 @@ var express = require('express')
   , flash = require('connect-flash');
 
 var config = require('./config');
+var middlewares = require('../utils/middlewares')(config);
 
 module.exports = function expressConfig(app, passport) {
 
@@ -21,6 +22,9 @@ module.exports = function expressConfig(app, passport) {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     
+
+    app.use(middlewares.feedConstants);
+
     app.use(session({
         secret: config.secret,
         resave: false,
