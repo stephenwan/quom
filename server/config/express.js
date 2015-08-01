@@ -8,7 +8,6 @@ var express = require('express')
   , flash = require('connect-flash');
 
 var config = require('./config');
-var middlewares = require('../utils/middlewares')(config);
 
 module.exports = function expressConfig(app, passport) {
 
@@ -23,7 +22,10 @@ module.exports = function expressConfig(app, passport) {
     app.use(bodyParser.urlencoded({ extended: true }));
     
 
-    app.use(middlewares.feedConstants);
+    app.use(function(req, res, next) {
+        req.constants = config.constants;
+        next();
+    });
 
     app.use(session({
         secret: config.secret,
@@ -31,9 +33,9 @@ module.exports = function expressConfig(app, passport) {
         saveUninitialized: true,
         cookie: { maxAge: 3600000 } // 1 hour
     }));
-
-//    app.use(passport.initialize());
-//    app.use(passport.session());
+    
+    app.use(passport.initialize());
+    app.use(passport.session());
 
     app.use(flash());
     

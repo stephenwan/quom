@@ -1,0 +1,9 @@
+extends ../master-layout.jade
+
+block stylesheets
+  link(rel='stylesheet', href='/public/vendors/bootstrap/dist/css/bootstrap.min.css')
+  link(rel='stylesheet', href='/public/css/style.css')
+
+block content
+  div You have logged in successfully as #{username}
+  a(href='/logout') Logout

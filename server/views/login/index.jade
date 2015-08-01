@@ -1,14 +1,14 @@
 mixin loginForm
   p Please login to your account.
-  form
+  form(method='post', action='/login')
     .form-group
       label(for='accountInput') Account
-      input.form-control(type='text', id='accountInput', required)
+      input.form-control(type='text', id='usernameInput', name='username', required)
     .form-group
       label(for='passwordInput') Password
-      input.form-control(type='password', id='passwordInput', required)
-    if (errorMessage !== null)  
-      p.error-message!= errorMessage  
+      input.form-control(type='password', id='passwordInput', name='password', required)
+    if (error !== null)  
+      p.error-message!= error  
     .container-center.space-around
       button(type='submit', class='btn btn-primary') Submit      
       .checkbox
@@ -25,7 +25,7 @@ block stylesheets
 block content
   div(class=['container-fluid', 'vertical-full', 'container-center', 'login-panel'])
     .panel(class=['panel-info', 'center-block'])
-      .panel-heading Welcome to #{title}!
+      .panel-heading Welcome to #{title}!        
       .panel-body
         +loginForm
       .panel-footer

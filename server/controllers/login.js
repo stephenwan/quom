@@ -1,17 +1,23 @@
-'use strict';
+var merge = require('merge');
 
-var utils = require('../utils/general');
-
-module.exports.index = indexCtrl;
-module.exports.registration = regCtrl;
-
-function regCtrl(req, res) {
-    res.render('login/registration');    
-}
-
-function indexCtrl(req, res) {
-    if (!req.user)
-	res.render('login/index', utils.merge(true, req.constants, { errorMessage: null}));
+function actionIndex(req, resp) {
+    if (req.user)
+      resp.redirect('/success');
     else
-	res.redirect();               
+      resp.render('login/index', merge(true, req.constants, {error: req.flash('error')}));
 }
+
+function actionSuccess(req, resp) {   
+    resp.render('login/login-success', { username: req.user.username});   
+}
+
+module.exports = {
+    actionIndex: actionIndex,
+    actionSuccess: actionSuccess
+};
+
+
+
+
+
+
