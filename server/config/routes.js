@@ -19,7 +19,7 @@ function configLoginRoutes(app, passport) {
 
 function redirectUnauthorized(req, resp, next) {
     if (!req.user) {
-        resp.redirect('/login');
+        return resp.redirect('/login');
     }
     next();
 }

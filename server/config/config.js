@@ -5,5 +5,6 @@ module.exports = {
         title: 'Quom'
     },    
     secret: 'quom@shenzhen',
-    root: path.normalize(__dirname + '/../')
+    root: path.normalize(__dirname + '/../'),
+    db: 'mongodb://localhost/quom'    
 };
