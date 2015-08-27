@@ -1,29 +1,35 @@
 'use strict';
 
-function configLoginRoutes(app, passport) {    
-    var loginCtrl = require('../controllers/login');    
-    app.get(['/login', '/login/index'], loginCtrl.actionIndex);
-    app.post('/login', passport.authenticate('local', {
-        successRedirect: '/success',
-        failureRedirect: '/login',
-        failureFlash: true
-    }));
-    app.get('/success', redirectUnauthorized, loginCtrl.actionSuccess);
-    app.get('/logout', function(req, resp) {
-        req.logout();
-        resp.redirect('/login');
-    });
+var loginCtrl = require('../controllers/login'),
+    usersCtrl = require('../controllers/users'),
+    authenticationMw = require('../middlewares/authentication');
 
-    app.get('/', redirectUnauthorized, loginCtrl.actionSuccess);
-}
+var $$app, $$passport, authentication;
 
-function redirectUnauthorized(req, resp, next) {
-    if (!req.user) {
-        return resp.redirect('/login');
-    }
-    next();
+function unprotectedRoutes() {
+    $$app.get(['/login', '/login/index'], loginCtrl.index);
+    $$app.get('/logout', loginCtrl.logout);
+    $$app.get('/registration', usersCtrl.registration);
+    $$app.post('/registration', usersCtrl.registration);
+} 
+
+function protectedRoutes() {
+    var _a = authentication;
+    $$app.post('/login', _a.authenticate);
+    $$app.get('/success', _a.guard, loginCtrl.success);
+    $$app.get('/', _a.guard, loginCtrl.success);
 }
 
 module.exports = function (app, passport) {
-    configLoginRoutes(app, passport);
+
+    $$app = app;
+    $$passport = passport;
+
+    if (!$$app || !$$passport)
+      throw new Error('Undefined dependency in ' + __filename);
+
+    authentication = authenticationMw($$passport);
+
+    unprotectedRoutes();
+    protectedRoutes();
 }

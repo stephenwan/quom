@@ -11,9 +11,15 @@ function actionSuccess(req, resp) {
     resp.render('login/login-success', { username: req.user.username});   
 }
 
+function actionLogout(req, resp) {
+    req.logout();
+    resp.redirect('/login');
+}
+
 module.exports = {
-    actionIndex: actionIndex,
-    actionSuccess: actionSuccess
+    index: actionIndex,
+    success: actionSuccess,
+    logout: actionLogout    
 };
 
 

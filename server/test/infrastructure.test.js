@@ -1,15 +1,16 @@
 'use strict';
 
 var expect = require('chai').expect;
+var config = require('../config/env/test');
 
 describe('Database should be operational', function() {
-    var db_url = 'mongodb://localhost/test_db';
+    var db_uri = config.db;
     var MongoClient = require('mongodb').MongoClient
     var database;
     var collection;
 
     beforeEach(function(done) {
-        MongoClient.connect(db_url, function(err, db) {
+        MongoClient.connect(db_uri, function(err, db) {
             if (!err) {
                 database = db;
                 collection = db.collection('test_users');

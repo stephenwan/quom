@@ -1,9 +1,9 @@
 var mongoose = require('mongoose'),
-    db_url = 'mongodb://localhost/test_db';
+    db_uri = require('../config/env/test').db;
 
 var connect = function () {
     var options = { server: { socketOptions: { keepAlive: 1 } } };
-    mongoose.connect(db_url, options);
+    mongoose.connect(db_uri, options);
 };
 connect();
 
