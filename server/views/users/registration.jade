@@ -1,15 +1,12 @@
-extends ../master-layout.jade
+extends ../master-layout-angular.jade
 
-block stylesheets
-  link(rel='stylesheet', href='/public/vendors/angular-material/angular-material.min.css')
-  link(rel='stylesheet', href='/public/css/style.css')
-  
-block pre-scripts
-  script(type='text/javascript', src='/public/vendors/angular/angular.min.js')
-  script(type='text/javascript', src='/public/vendors/angular-material/angular-material.min.js')
-  script(type='text/javascript', src='/public/vendors/angular-aria/angular-aria.min.js')
-  script(type='text/javascript', src='/public/vendors/angular-animate/angular-animate.min.js')
-
-block content
-  
-  
+block content-angular
+  h2 User Registration
+  div(ng-controller="UserRegistrationCtrl" layour="column" class=['content-center'])
+    md-input-container
+      label Email
+      input(ng-model="use.email")
+      
+      
+    div hello world
+    div {{user.email}}

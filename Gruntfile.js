@@ -34,16 +34,17 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
-                  'web/js/common/*/*.js'
+                  'web/js/*/*/*.js',
+                  'web/js/*.js'
                 ]
             }
         },
         concat: {
             dist: {
                 src: [
-                  'web/js/common/*/*.module.js',
+                  'web/js/common/*/module.*.js',
                   'web/js/common/*/*.js',
-                  'web/js/areas/*/*.module.js',
+                  'web/js/areas/*/module.*.js',
                   'web/js/areas/*/*.js',
                   'web/js/*.js'
                 ],
