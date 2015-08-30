@@ -19,6 +19,7 @@ module.exports = function(grunt) {
                   'web/style/*/*.scss',
                   'web/style/*.scss',
                   'web/js/*/*/*.js',
+                  'web/js/*/*.js',
                   'web/js/*.js'
                 ],
                 tasks: [
@@ -42,10 +43,11 @@ module.exports = function(grunt) {
         concat: {
             dist: {
                 src: [
+                  'web/js/vendor-fixes/*.js',
                   'web/js/common/*/module.*.js',
                   'web/js/common/*/*.js',
                   'web/js/areas/*/module.*.js',
-                  'web/js/areas/*/*.js',
+                  'web/js/areas/*/*.js',                  
                   'web/js/*.js'
                 ],
                 dest: 'public/js/web.js'

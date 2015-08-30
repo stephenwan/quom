@@ -1,4 +1,4 @@
-mixin loginForm
+mixin login-form
   p Please login to your account.
   form(method='post', action='/login')
     .form-group
@@ -27,7 +27,7 @@ block content
     .panel(class=['panel-info', 'center-block'])
       .panel-heading Welcome to #{title}!        
       .panel-body
-        +loginForm
+        +login-form
       .panel-footer
         .container-center.space-around
           a(href='/reset-password') Forgot Your Password?

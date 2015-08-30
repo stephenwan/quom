@@ -2,18 +2,23 @@ extends ./master-layout.jade
 
 block stylesheets
   link(rel='stylesheet', href='/public/vendors/angular-material/angular-material.min.css')
+  block stylesheets-inner
   link(rel='stylesheet', href='/public/css/style.css')
   
 block pre-scripts
+  script(type='text/javascript', src='public/vendors/jquery/dist/jquery.min.js')
   script(type='text/javascript', src='/public/vendors/angular/angular.min.js')
   script(type='text/javascript', src='/public/vendors/angular-aria/angular-aria.min.js')
   script(type='text/javascript', src='/public/vendors/angular-animate/angular-animate.min.js')
   script(type='text/javascript', src='/public/vendors/angular-material/angular-material.min.js')
+ 
+  block pre-scripts-inner
   script(type='text/javascript', src='/public/js/web.js')
-
+  
+  
 block content
   div(ng-app="quom")  
-    block content-angular
+    block content-inner
   
 block post-scripts
 

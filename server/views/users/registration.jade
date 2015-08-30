@@ -1,12 +1,104 @@
+mixin user-account-form
+  form(name="userAccountForm")
+    span(ng-init="forms.userAccountForm = userAccountForm") 
+    md-content(layout-padding)
+      md-input-container
+        label Account Name
+        input(
+          name="accountName"
+          type="text"
+          ng-model="user.accountName" 
+          required)          
+        div(ng-messages="forms.userAccountForm.accountName.$error") 
+          div(ng-message="required") This is required.
+                    
+      md-input-container
+        label Email
+        input(
+          name="email" 
+          type="email"
+          ng-model="user.email"
+          required)
+        div(ng-messages="forms.userAccountForm.email.$error") 
+          div(ng-message="required") This is required.
+          div(ng-message="email") This is not a valid email address.
+          
+      md-input-container
+        label Password
+        input(
+          name="password"
+          type="password"
+          ng-model="user.password"
+          ng-maxlength="15"
+          ng-minlength="6"
+          required)
+        div(ng-messages="forms.userAccountForm.password.$error")          
+          div(ng-message="required") This is required.
+          div(ng-message="maxlength") The password cannot exceed 15 characters.
+          div(ng-message="minlength") The password must be longer or equal to 6 characters.
+          
+      md-input-container
+        label Confirm Password
+        input(name="confirmPassword", type="password", match-password="password" ng-model="confirmPassword")
+        div(ng-messages="forms.userAccountForm.confirmPassword.$error")
+          div(ng-message="passwordMatch") The passwords do not match.
+
+mixin user-info-form
+  form(name="userInfoForm")
+    span(ng-init="forms.userInfoForm = userInfoForm") 
+    md-content(layout-padding)
+      md-input-container
+        label First Name
+        input(
+          name="firstName"
+          type="text"
+          ng-model="user.firstName")          
+
+      md-input-container
+        label Last Name
+        input(
+          name="lastName"
+          type="text"
+          ng-model="user.lastName")
+      
+      - var utilsScript = '/public/vendors/intl-tel-input/lib/libphonenumber/build/utils.js'; 
+      md-input-container(class=['justify-phone-input'])
+        label Phone 
+        input( name = "phone"
+          type = "text"
+          international-phone-number
+          preferred-countries = "hk"
+          utils-script = utilsScript
+          ng-model="user.phone")
+        div(ng-messages='forms.userInfoForm.$error')                    
+          div(ng-message="phone") Number is incorrect.
+      
+          
+      
+                         
+
 extends ../master-layout-angular.jade
 
-block content-angular
-  h2 User Registration
-  div(ng-controller="UserRegistrationCtrl" layour="column" class=['content-center'])
-    md-input-container
-      label Email
-      input(ng-model="use.email")
-      
-      
-    div hello world
-    div {{user.email}}
+block stylesheets-inner
+  link(rel='stylesheet', href='/public/vendors/intl-tel-input/build/css/intlTelInput.css')
+
+block pre-scripts-inner
+  script(type='text/javascript', src='/public/vendors/angular-messages/angular-messages.min.js') 
+  script(type='text/javascript', src='/public/vendors/angular-password/angular-password.min.js') 
+  script(type='text/javascript', src='/public/vendors/intl-tel-input/lib/libphonenumber/build/utils.js')
+  script(type='text/javascript', src='/public/vendors/intl-tel-input/build/js/intlTelInput.js') 
+  script(type='text/javascript', src='/public/vendors/international-phone-number/releases/international-phone-number.js') 
+
+block content-inner
+  md-content(
+    ng-controller="UserRegistrationCtrl"
+    layout="column" 
+    class=['content-center'])
+    h2 User Registration
+    md-tabs(md-border-bottom)
+      md-tab(label="Account Info")
+        +user-account-form
+      md-tab(label="User Info")
+        +user-info-form
+        
+ 

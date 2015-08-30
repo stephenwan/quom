@@ -6,12 +6,15 @@
     "stephenwan <stephenwyy@gmail.com>"
   ],
   "description": "a quotation management system",
-    "license": "MIT",
-    "dependencies": {
-        "bootstrap": "~3.3.5",
-        "angular-latest": "~1.4.0",
-        "angular-material": "~0.10.0"
-    },  
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "angular-latest": "~1.4.0",
+    "angular-material": "~0.10.0",
+    "angular-messages": "~1.4.5",
+    "angular-password": "~1.0.1",
+    "international-phone-number": "~0.0.10"
+  },
   "ignore": [
     "**/.*",
     "node_modules",

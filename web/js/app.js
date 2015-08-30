@@ -4,7 +4,8 @@
 
     var quomApp = angular.module('quom', [
       'ngMaterial',
-      
+      'ngMessages',
+      'ngPassword',
       'quom.users'
     ]);
 

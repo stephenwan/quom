@@ -2,5 +2,5 @@
 
     'use strict';
 
-    angular.module('quom.users', []);
+    angular.module('quom.users', ['internationalPhoneNumber']);
 })();
