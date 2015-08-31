@@ -2,5 +2,8 @@
 
     'use strict';
 
-    angular.module('quom.users', ['internationalPhoneNumber']);
+    angular.module('quom.users', [
+      'internationalPhoneNumber',
+      'ui.gravatar'
+    ]);
 })();

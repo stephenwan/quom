@@ -1,7 +1,7 @@
 mixin user-account-form
   form(name="userAccountForm")
     span(ng-init="forms.userAccountForm = userAccountForm") 
-    md-content(layout-padding)
+    md-content(layout-padding, class=['content-center-md'])
       md-input-container
         label Account Name
         input(
@@ -46,37 +46,93 @@ mixin user-account-form
 mixin user-info-form
   form(name="userInfoForm")
     span(ng-init="forms.userInfoForm = userInfoForm") 
-    md-content(layout-padding)
-      md-input-container
-        label First Name
-        input(
-          name="firstName"
-          type="text"
-          ng-model="user.firstName")          
+        
+    md-content(layout-padding, class=['content-center-md'])    
+      
+      div(layout='row')
+        div(flex='20')
+          img(
+            class=['gravatar']
+            gravatar-src="'{{user.email}}'"
+            gravatar-size="100"
+            flex="20")
+        div(flex)        
+          div(layout='row')
+            md-input-container(class=['half-width'])
+              label First Name
+              input(
+                name="firstName"
+                type="text"
+                ng-model="user.firstName")          
 
-      md-input-container
-        label Last Name
-        input(
-          name="lastName"
-          type="text"
-          ng-model="user.lastName")
+            md-input-container(class=['half-width'])
+              label Last Name
+              input(
+                name="lastName"
+                type="text"
+                ng-model="user.lastName")
       
-      - var utilsScript = '/public/vendors/intl-tel-input/lib/libphonenumber/build/utils.js'; 
-      md-input-container(class=['justify-phone-input'])
-        label Phone 
-        input( name = "phone"
-          type = "text"
-          international-phone-number
-          preferred-countries = "hk"
-          utils-script = utilsScript
-          ng-model="user.phone")
-        div(ng-messages='forms.userInfoForm.$error')                    
-          div(ng-message="phone") Number is incorrect.
-      
-          
-      
-                         
+          - var utilsScript = '/public/vendors/intl-tel-input/lib/libphonenumber/build/utils.js'; 
+          div(layout='row')
+            md-input-container(class=['justify-phone-input', 'half-width'])
+              label Phone 
+              input( name = "phone"
+                type = "text"
+                international-phone-number
+                preferred-countries = "hk"
+                utils-script = utilsScript
+                ng-model="user.phone")
+              div(ng-messages='forms.userInfoForm.phone.$error')                    
+                  div(ng-message="phone") Number is incorrect.
 
+            md-input-container(class=['justify-phone-input', 'half-width'])
+              label Fax 
+              input( name = "fax"
+                type = "text"
+                international-phone-number
+                preferred-countries = "hk"
+                utils-script = utilsScript
+                ng-model="user.fax")
+              div(ng-messages='forms.userInfoForm.fax.$error')                    
+                div(ng-message="fax") Number is incorrect.
+
+          md-input-container
+            label Address
+            input(
+              name = "address"
+              type = "text"
+              ng-model = "user.address"
+              md-maxlength = "50")
+
+          md-input-container
+            label Address 2
+            input(
+              name = "addressExtra"
+              type = "text"
+              ng-model = "user.addressExtra"
+              md-maxlength = "50")
+
+          div(layout="row")
+            md-input-container(flex)
+              label City
+              input(
+                name = "city"
+                type = "text"
+                ng-model = "user.city")
+            md-input-container(flex)
+              label Country
+              input(
+                name = "country"
+                type = "text"
+                ng-model = "user.country")
+            md-input-container(flex)
+              label Postal Code
+              input(
+                name = "postalCode"
+                type = "text"
+                ng-model = "user.postalCode")
+
+                                                      
 extends ../master-layout-angular.jade
 
 block stylesheets-inner
@@ -88,12 +144,13 @@ block pre-scripts-inner
   script(type='text/javascript', src='/public/vendors/intl-tel-input/lib/libphonenumber/build/utils.js')
   script(type='text/javascript', src='/public/vendors/intl-tel-input/build/js/intlTelInput.js') 
   script(type='text/javascript', src='/public/vendors/international-phone-number/releases/international-phone-number.js') 
+  script(type='text/javascript', src='/public/vendors/angular-gravatar/build/angular-gravatar.min.js')
 
 block content-inner
   md-content(
     ng-controller="UserRegistrationCtrl"
     layout="column" 
-    class=['content-center'])
+    class=['content-center', 'area-registration'])
     h2 User Registration
     md-tabs(md-border-bottom)
       md-tab(label="Account Info")

@@ -10,7 +10,7 @@
 
     function ctrlFn($scope, $element, $timeout) {
         $scope.user = {
-            email: 'example@example.com',
+            email: '',
             firstName: '',
             lastName: '' 
         };
