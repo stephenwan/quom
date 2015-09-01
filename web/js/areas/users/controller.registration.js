@@ -16,7 +16,11 @@
         };
 
         $scope.forms = { };        
-
+        $scope.stepIndex = 0;
+        
+        $scope.nextStep = function() {
+            $scope.stepIndex += 1;
+        };
     }
 
 })();

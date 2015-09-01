@@ -1,3 +1,10 @@
+mixin tab-navigator(condition, onclick)
+  md-button(
+    class=["md-raised", "md-primary", "navigator"]
+    ng-disabled = condition
+    ng-click = onclick
+    ) Continue
+
 mixin user-account-form
   form(name="userAccountForm")
     span(ng-init="forms.userAccountForm = userAccountForm") 
@@ -39,10 +46,12 @@ mixin user-account-form
           
       md-input-container
         label Confirm Password
-        input(name="confirmPassword", type="password", match-password="password" ng-model="confirmPassword")
+        input(name="confirmPassword", type="password", match-password="password" ng-model="user.confirmPassword")
         div(ng-messages="forms.userAccountForm.confirmPassword.$error")
           div(ng-message="passwordMatch") The passwords do not match.
 
+      + tab-navigator('forms.userAccountForm.$invalid', 'nextStep()')
+          
 mixin user-info-form
   form(name="userInfoForm")
     span(ng-init="forms.userInfoForm = userInfoForm") 
@@ -50,12 +59,11 @@ mixin user-info-form
     md-content(layout-padding, class=['content-center-md'])    
       
       div(layout='row')
-        div(flex='20')
+        div(flex='33')
           img(
             class=['gravatar']
             gravatar-src="'{{user.email}}'"
-            gravatar-size="100"
-            flex="20")
+            gravatar-size="100")
         div(flex)        
           div(layout='row')
             md-input-container(class=['half-width'])
@@ -72,6 +80,13 @@ mixin user-info-form
                 type="text"
                 ng-model="user.lastName")
       
+          md-input-container
+            label Company
+            input(
+              name="company"
+              type="text"
+              ng-model="user.company")                
+                
           - var utilsScript = '/public/vendors/intl-tel-input/lib/libphonenumber/build/utils.js'; 
           div(layout='row')
             md-input-container(class=['justify-phone-input', 'half-width'])
@@ -131,6 +146,8 @@ mixin user-info-form
                 name = "postalCode"
                 type = "text"
                 ng-model = "user.postalCode")
+                
+          + tab-navigator('forms.userAccountForm.$invalid && forms.userInfoForm.$invalid', '')
 
                                                       
 extends ../master-layout-angular.jade
@@ -152,10 +169,14 @@ block content-inner
     layout="column" 
     class=['content-center', 'area-registration'])
     h2 User Registration
-    md-tabs(md-border-bottom)
+    md-tabs(
+      md-selected = "stepIndex"
+      md-border-bottom
+      md-dynamic-height
+      )
       md-tab(label="Account Info")
         +user-account-form
-      md-tab(label="User Info")
+      md-tab(label="User Info", ng-disabled="forms.userAccountForm.$invalid")
         +user-info-form
         
  

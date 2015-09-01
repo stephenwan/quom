@@ -17,7 +17,7 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 25px;    
+        margin-top: 50px;    
     }
 
     .justify-phone-input {
@@ -26,5 +26,8 @@
         }
     }
 
-        
+    .md-button.navigator {
+        display: block;
+        @extend .h-center;
+    }
 }
