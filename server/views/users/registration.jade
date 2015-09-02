@@ -1,14 +1,19 @@
-mixin tab-navigator(condition, onclick)
-  md-button(
-    class=["md-raised", "md-primary", "navigator"]
-    ng-disabled = condition
-    ng-click = onclick
-    ) Continue
+mixin tab-navigator(condition, onclick, text)
+  div(layout="row" layout-align="center")
+    md-button(
+      class=["md-raised", "md-default"]
+      ng-href="/login"
+      ) Cancel
+    md-button(
+      class=["md-raised", "md-primary"]
+      ng-disabled = condition
+      ng-click = onclick
+      ) #{text}
 
 mixin user-account-form
   form(name="userAccountForm")
     span(ng-init="forms.userAccountForm = userAccountForm") 
-    md-content(layout-padding, class=['content-center-md'])
+    div(layout-padding, class=['content-center-md'])
       md-input-container
         label Account Name
         input(
@@ -50,13 +55,13 @@ mixin user-account-form
         div(ng-messages="forms.userAccountForm.confirmPassword.$error")
           div(ng-message="passwordMatch") The passwords do not match.
 
-      + tab-navigator('forms.userAccountForm.$invalid', 'nextStep()')
+      + tab-navigator('forms.userAccountForm.$invalid', 'nextStep()', 'Continue')
           
 mixin user-info-form
   form(name="userInfoForm")
     span(ng-init="forms.userInfoForm = userInfoForm") 
         
-    md-content(layout-padding, class=['content-center-md'])    
+    div(layout-padding, class=['content-center-md'])    
       
       div(layout='row')
         div(flex='33')
@@ -147,7 +152,7 @@ mixin user-info-form
                 type = "text"
                 ng-model = "user.postalCode")
                 
-          + tab-navigator('forms.userAccountForm.$invalid && forms.userInfoForm.$invalid', '')
+          + tab-navigator('forms.userAccountForm.$invalid && forms.userInfoForm.$invalid', 'nextStep()', 'Continue')
 
                                                       
 extends ../master-layout-angular.jade
@@ -171,12 +176,22 @@ block content-inner
     h2 User Registration
     md-tabs(
       md-selected = "stepIndex"
-      md-border-bottom
-      md-dynamic-height
       )
-      md-tab(label="Account Info")
-        +user-account-form
-      md-tab(label="User Info", ng-disabled="forms.userAccountForm.$invalid")
-        +user-info-form
-        
- 
+      md-tab
+        md-tab-label
+          span Account Info
+        md-tab-body  
+          +user-account-form
+      md-tab(ng-disabled="forms.userAccountForm.$invalid")
+        md-tab-label 
+          span User Info
+        md-tab-body
+          +user-info-form
+      md-tab(ng-disabled="forms.userAccountForm.$invalid || forms.userInfoForm.$invalid")
+        md-tab-label
+          span Done
+        md-tab-body
+          div(layout-padding, class=['content-center-sm'])
+            p Please click "Submit" to finish your registration. 
+            p You can update your settings after logging into our system.          
+            + tab-navigator('forms.userAccountForm.$invalid && forms.userInfoForm.$invalid', 'submit()', 'Submit')

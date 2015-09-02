@@ -25,3 +25,7 @@
     width: 640px;
 }
 
+.content-center-sm {
+    @extend .h-center;
+    width: 450px;
+}
