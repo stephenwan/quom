@@ -6,15 +6,31 @@
       'ngMaterial',
       'ngMessages',
       'ngPassword',
+      'ui-notification',
       'quom.users'
     ]);
 
-    quomApp.config( function($mdThemingProvider){
-        // Configure a dark theme with primary foreground yellow
-        $mdThemingProvider.theme('docs-dark', 'default')
-                          .primaryPalette('yellow')
-                          .dark();
-    });
+    quomApp.config([
+      '$mdThemingProvider', 'NotificationProvider',
+      quomAppConfig
+    ]);
+        
 
+    function quomAppConfig($mdThemingProvider, NotificationProvider) {
+        $mdThemingProvider.theme('docs-dark', 'default')
+        .primaryPalette('yellow')
+        .dark();
+
+        NotificationProvider.setOptions({
+            delay: 10000,
+            startTop: 20,
+            startRight: 10,
+            verticalSpacing: 20,
+            horizontalSpacing: 20,
+            positionX: 'center',
+            positionY: 'bottom'
+        });
+
+    }
     
 })();

@@ -4,11 +4,11 @@
 
     angular.module('quom.users')
            .controller('UserRegistrationCtrl', [             
-             '$scope', '$element', '$timeout', '$location',
+             '$scope', '$element', '$timeout', '$location', '$http', 'Notification',
              ctrlFn]);
 
 
-    function ctrlFn($scope, $element, $timeout, $location) {
+    function ctrlFn($scope, $element, $timeout, $location, $http, Notification) {
         $scope.user = {
             email: '',
             firstName: '',
@@ -23,14 +23,18 @@
         };
 
         $scope.submit = function() {
-            console.log('submit', $scope.user);
+            $http.post('/registration', $scope.user)
+            .success(function() {
+                Notification.success('Success');
+                $location.path('/login').replace();
+            })
+            .error(function() {
+                Notification.error('Error');
+                $scope.stepIndex = 0;
+            });                        
         };
 
-        $scope.cancel = function() {
-            $scope.user = {};
-            $location.path('/login').replace();
-            
-        };
+
     }
 
 })();

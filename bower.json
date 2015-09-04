@@ -14,7 +14,8 @@
     "angular-messages": "~1.4.5",
     "angular-password": "~1.0.1",
     "international-phone-number": "~0.0.10",
-    "angular-gravatar": "~0.4.1"
+    "angular-gravatar": "~0.4.1",
+    "angular-ui-notification": "~0.0.14"
   },
   "ignore": [
     "**/.*",
