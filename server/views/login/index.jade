@@ -23,7 +23,8 @@ block stylesheets
   link(rel='stylesheet', href='/public/css/style.css')
 
 block content
-  div(class=['container-fluid', 'vertical-full', 'container-center', 'login-panel'])
+  div(class=['container-fluid', 'vertical-full', 'container-center', 'login-panel', 'flow-column', 'flow-left'], layout="column")
+    div(class='h-10') 
     .panel(class=['panel-info', 'center-block'])
       .panel-heading Welcome to #{title}!        
       .panel-body

@@ -1,5 +1,5 @@
-var localStrategy = require('./passport/local');
-var userModel = require('../models/user');
+var localStrategy = require('./passport/local'),
+    mongoose = require('mongoose');
 
 function config(passport) {    
 
@@ -10,7 +10,8 @@ function config(passport) {
     });
 
     passport.deserializeUser(function(id, done) {
-        userModel.findUser('id', id, done);
+        var User = mongoose.model('User');
+        User.findOne({ _id: id}, done);
     });    
 }
 

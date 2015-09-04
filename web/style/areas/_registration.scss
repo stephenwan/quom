@@ -1,11 +1,9 @@
 .area-registration {
-
     md-input-container {
         &.half-width {
             width: 50%;
         }
     }
-
     .intl-tel-input {
         top: 15px;
         input {
@@ -16,6 +14,14 @@
     // The height transition causes content to flash. Very annoying.
     md-tabs {
         transition: none !important;
+	height: 600px;
+
+        md-pagination-wrapper {
+          display: flex;
+          justify-content: center;
+          width: 100%;          
+        }
+      
     }
     
     img.gravatar {

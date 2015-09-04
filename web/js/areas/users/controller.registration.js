@@ -7,7 +7,6 @@
              '$scope', '$element', '$timeout', '$location', '$http', 'Notification',
              ctrlFn]);
 
-
     function ctrlFn($scope, $element, $timeout, $location, $http, Notification) {
         $scope.user = {
             email: '',
@@ -25,7 +24,7 @@
         $scope.submit = function() {
             $http.post('/registration', $scope.user)
             .success(function() {
-                Notification.success('Success');
+                Notification.success('Success');                
                 $location.path('/login').replace();
             })
             .error(function() {

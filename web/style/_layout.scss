@@ -2,10 +2,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     &.space-around {
         justify-content: space-around;
     }
+    &.flow-row {
+      flex-direction: row;
+    }
+    &.flow-column {
+      flex-direction: column;      
+    }
+    &.flow-left {
+      justify-content: left;
+    }
 }
+  
 .vertical-full {
     height: 100%;
 }
@@ -29,3 +40,11 @@
     @extend .h-center;
     width: 450px;
 }
+
+@for $i from 1 through 20 {
+  .h-#{$i * 5} {
+    height: #{ $i * 5}%
+  }
+}
+
+
